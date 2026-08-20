@@ -5,6 +5,8 @@ in R with offset(log(Exposure)) rate modelling, AIC/likelihood-ratio model
 comparison, residual diagnostics, and visualised predicted rates with
 confidence intervals.
 
+**[Read the full analysis report](https://qw04.github.io/Car-Claims/analysis.html)**
+
 ## Data
 
 [`freMTPL2freq`](https://www.openml.org/d/41214): 677,991 French motor
@@ -40,22 +42,13 @@ rmarkdown::render("analysis.Rmd") # full analysis -> analysis.html
    Poisson model; negative binomial GLM (`MASS::glm.nb`) fit as the
    overdispersion-robust alternative.
 4. **Model comparison** — AIC/BIC across candidate models, likelihood-ratio
-   tests for nested Poisson models, and a boundary-corrected LR test
-   (`pscl::odTest`) for Poisson vs. negative binomial.
+   tests for nested Poisson models, and a boundary-corrected LR test for
+   Poisson vs. negative binomial (computed directly rather than via
+   `pscl::odTest`, which mishandles this model's offset term).
 5. **Diagnostics** — deviance/Pearson residuals, leverage and Cook's
    distance, and DHARMa simulated-residual diagnostics for the count GLM.
 6. **Predicted rates** — fitted claim frequency by rating factor with
    confidence bands, holding other factors at reference levels.
-
-## What this project does and doesn't claim
-
-This is a solo learning/portfolio project, not a production pricing model.
-It does **not** claim:
-- a technical premium (no claim *severity*/cost modelling — frequency only)
-- spatial smoothing, GAMs, or machine-learning benchmarking of the GLM
-- production deployment, monitoring, or real-time scoring
-- validation against a live or held-out book of business beyond a
-  train/test split within this historical dataset
 
 ## Skills demonstrated
 
